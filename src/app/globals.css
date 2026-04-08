@@ -1,0 +1,200 @@
+@import "tailwindcss";
+
+@variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: var(--font-inter);
+}
+
+@layer base {
+  :root {
+    --theme-bg: #fafaf9;
+    --theme-card: #ffffff;
+    --theme-accent: #57534e;
+    --theme-accent-muted: #f5f5f4;
+    --theme-text: #1c1917;
+    --theme-text-muted: #78716c;
+    --theme-border: #e7e5e4;
+    --theme-grid: #f5f5f4;
+    --theme-selection: #1c1917;
+    --theme-selection-text: #ffffff;
+    --theme-range-bg: rgba(87, 83, 78, 0.08);
+  }
+
+  .dark {
+    --theme-bg: #0c0a09;
+    --theme-card: #1c1917;
+    --theme-accent: #d6d3d1;
+    --theme-accent-muted: #292524;
+    --theme-text: #fafaf9;
+    --theme-text-muted: #a8a29e;
+    --theme-border: #292524;
+    --theme-grid: #292524;
+    --theme-selection: #fafaf9;
+    --theme-selection-text: #0c0a09;
+    --theme-range-bg: rgba(214, 211, 209, 0.1);
+  }
+
+  /* --- THEME OVERRIDES --- */
+
+  /* Ocean Theme - Strong Blues */
+  .theme-ocean {
+    --theme-bg: #f0f9ff;
+    --theme-card: #ffffff;
+    --theme-accent: #0284c7;
+    --theme-accent-muted: #e0f2fe;
+    --theme-text: #075985;
+    --theme-text-muted: #0369a1;
+    --theme-border: #bae6fd;
+    --theme-grid: #f0f9ff;
+    --theme-selection: #0284c7;
+    --theme-selection-text: #ffffff;
+    --theme-range-bg: rgba(2, 132, 199, 0.12);
+  }
+  .dark.theme-ocean {
+    --theme-bg: #082f49;
+    --theme-card: #0c4a6e;
+    --theme-accent: #38bdf8;
+    --theme-accent-muted: #075985;
+    --theme-text: #e0f2fe;
+    --theme-text-muted: #7dd3fc;
+    --theme-border: #0369a1;
+    --theme-grid: #075985;
+    --theme-selection: #38bdf8;
+    --theme-selection-text: #082f49;
+    --theme-range-bg: rgba(56, 189, 248, 0.15);
+  }
+
+  /* Forest Theme - Deep Greens */
+  .theme-forest {
+    --theme-bg: #f0fdf4;
+    --theme-card: #ffffff;
+    --theme-accent: #16a34a;
+    --theme-accent-muted: #dcfce7;
+    --theme-text: #166534;
+    --theme-text-muted: #15803d;
+    --theme-border: #bbf7d0;
+    --theme-grid: #f0fdf4;
+    --theme-selection: #16a34a;
+    --theme-selection-text: #ffffff;
+    --theme-range-bg: rgba(22, 163, 74, 0.12);
+  }
+  .dark.theme-forest {
+    --theme-bg: #052e16;
+    --theme-card: #064e3b;
+    --theme-accent: #4ade80;
+    --theme-accent-muted: #064e3b;
+    --theme-text: #dcfce7;
+    --theme-text-muted: #86efac;
+    --theme-border: #065f46;
+    --theme-grid: #065f46;
+    --theme-selection: #4ade80;
+    --theme-selection-text: #052e16;
+    --theme-range-bg: rgba(74, 222, 128, 0.15);
+  }
+
+  /* Royal Theme - Vibrant Purples */
+  .theme-royal {
+    --theme-bg: #f5f3ff;
+    --theme-card: #ffffff;
+    --theme-accent: #7c3aed;
+    --theme-accent-muted: #ede9fe;
+    --theme-text: #5b21b6;
+    --theme-text-muted: #6d28d9;
+    --theme-border: #ddd6fe;
+    --theme-grid: #f5f3ff;
+    --theme-selection: #7c3aed;
+    --theme-selection-text: #ffffff;
+    --theme-range-bg: rgba(124, 58, 237, 0.12);
+  }
+  .dark.theme-royal {
+    --theme-bg: #2e1065;
+    --theme-card: #4c1d95;
+    --theme-accent: #a78bfa;
+    --theme-accent-muted: #2e1065;
+    --theme-text: #f5f3ff;
+    --theme-text-muted: #c4b5fd;
+    --theme-border: #6d28d9;
+    --theme-grid: #6d28d9;
+    --theme-selection: #a78bfa;
+    --theme-selection-text: #2e1065;
+    --theme-range-bg: rgba(167, 139, 250, 0.15);
+  }
+
+  /* Sunset Theme - Warm Pinks/Oranges */
+  .theme-sunset {
+    --theme-bg: #fff1f2;
+    --theme-card: #ffffff;
+    --theme-accent: #f43f5e;
+    --theme-accent-muted: #ffe4e6;
+    --theme-text: #9f1239;
+    --theme-text-muted: #be123c;
+    --theme-border: #fecdd3;
+    --theme-grid: #fff1f2;
+    --theme-selection: #f43f5e;
+    --theme-selection-text: #ffffff;
+    --theme-range-bg: rgba(244, 63, 94, 0.12);
+  }
+  .dark.theme-sunset {
+    --theme-bg: #4c0519;
+    --theme-card: #881337;
+    --theme-accent: #fb7185;
+    --theme-accent-muted: #4c0519;
+    --theme-text: #fff1f2;
+    --theme-text-muted: #fda4af;
+    --theme-border: #9f1239;
+    --theme-grid: #9f1239;
+    --theme-selection: #fb7185;
+    --theme-selection-text: #4c0519;
+    --theme-range-bg: rgba(251, 113, 133, 0.15);
+  }
+
+  /* Animated Theme - Aurora */
+  .theme-aurora {
+    animation: aurora-bg 15s ease infinite;
+    --theme-card: #ffffff;
+    --theme-accent: #10b981;
+    --theme-selection: #10b981;
+    --theme-selection-text: #ffffff;
+  }
+  @keyframes aurora-bg {
+    0% { --theme-bg: #f0fdfa; --theme-text: #134e4a; --theme-border: #99f6e4; }
+    33% { --theme-bg: #f0f9ff; --theme-text: #0c4a6e; --theme-border: #bae6fd; }
+    66% { --theme-bg: #f5f3ff; --theme-text: #4c1d95; --theme-border: #ddd6fe; }
+    100% { --theme-bg: #f0fdfa; --theme-text: #134e4a; --theme-border: #99f6e4; }
+  }
+
+  .dark.theme-aurora {
+    animation: aurora-dark-bg 15s ease infinite;
+  }
+  @keyframes aurora-dark-bg {
+    0% { --theme-bg: #064e3b; --theme-text: #ecfdf5; --theme-border: #065f46; --theme-card: #042f2e; }
+    33% { --theme-bg: #0c4a6e; --theme-text: #f0f9ff; --theme-border: #0369a1; --theme-card: #082f49; }
+    66% { --theme-bg: #4c1d95; --theme-text: #f5f3ff; --theme-border: #5b21b6; --theme-card: #2e1065; }
+    100% { --theme-bg: #064e3b; --theme-text: #ecfdf5; --theme-border: #065f46; --theme-card: #042f2e; }
+  }
+
+  body {
+    @apply transition-all duration-700 ease-in-out font-sans;
+    background-color: var(--theme-bg);
+    color: var(--theme-text);
+  }
+}
+
+/* Utilities to use variables in Tailwind-like classes if needed, 
+   but we'll mostly use inline styles or raw var() in style tags for instant sync */
+.bg-theme { background-color: var(--theme-bg); }
+.card-theme { background-color: var(--theme-card); }
+.text-theme { color: var(--theme-text); }
+.border-theme { border-color: var(--theme-border); }
+
+@keyframes gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradient 3s ease infinite;
+}
