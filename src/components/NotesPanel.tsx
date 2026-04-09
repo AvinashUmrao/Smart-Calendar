@@ -18,6 +18,7 @@ export interface CalendarEvent {
   time: string;
   description?: string;
   color?: EventColor;
+  icon?: string;
   tags?: string[];
   codeSnippet?: string;
   codeLanguage?: string;

@@ -389,7 +389,7 @@ export default function Calendar() {
             {viewMode === 'year' && (
               <YearView 
                 currentDate={currentMonth}
-                onSelectMonth={(m) => { setCurrentMonth(setMonth(currentMonth, m)); setViewMode('month'); }}
+                onSelectMonth={(m) => { setCurrentMonth(m); setViewMode('month'); }}
               />
             )}
 
