@@ -96,7 +96,7 @@ export default function Header({
   const currentYear = getYear(currentDate);
 
   return (
-    <div className="flex flex-col lg:flex-row lg:items-center justify-between mb-10 gap-6 relative z-50">
+    <div className="flex flex-col lg:flex-row lg:items-center justify-between mb-10 gap-6 relative z-50 calendar-header">
       <div className="flex flex-col select-none animate-in fade-in slide-in-from-left-4 duration-700">
         <div className="relative" ref={monthRef}>
           <button 
@@ -252,7 +252,7 @@ export default function Header({
            <div className="relative" ref={themeRef}>
              <button
                onClick={() => setShowThemePicker(!showThemePicker)}
-               className={`p-3 rounded-2xl transition-all border ${showThemePicker ? 'bg-[var(--theme-selection)] text-[var(--theme-selection-text)] border-transparent' : 'bg-[var(--theme-card)] border-[var(--theme-border)] text-[var(--theme-text-muted)] hover:text-[var(--theme-text)] shadow-sm'}`}
+               className={`p-3 rounded-2xl transition-all border theme-toggle-button ${showThemePicker ? 'bg-[var(--theme-selection)] text-[var(--theme-selection-text)] border-transparent' : 'bg-[var(--theme-card)] border-[var(--theme-border)] text-[var(--theme-text-muted)] hover:text-[var(--theme-text)] shadow-sm'}`}
              >
                <Palette size={20} />
              </button>

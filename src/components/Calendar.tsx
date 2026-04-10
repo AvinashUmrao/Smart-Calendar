@@ -34,6 +34,8 @@ import DayView from './DayView';
 import ListView from './ListView';
 import YearView from './YearView';
 import FocusView from './FocusView';
+import ExtraFeatures from './ExtraFeatures';
+import Onboarding from './Onboarding';
 
 export type ThemeId = 'stone' | 'ocean' | 'forest' | 'royal' | 'sunset' | 'aurora';
 
@@ -62,12 +64,13 @@ export default function Calendar() {
   const [currentMonth, setCurrentMonth] = useState<Date>(new Date());
   const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
-  const [focusedDate, setFocusedDate] = useState<Date | null>(new Date());
+  const [focusedDate, setFocusedDate] = useState<Date | null>(null);
   const [events, setEvents] = useState<Record<string, CalendarEvent[]>>({});
   
   const [rangeStart, setRangeStart] = useState<Date | null>(null);
   const [rangeEnd, setRangeEnd] = useState<Date | null>(null);
   const [notifiedEvents, setNotifiedEvents] = useState<Set<string>>(new Set());
+  const [showOnboarding, setShowOnboarding] = useState(false);
 
   useEffect(() => {
     setIsClient(true);
@@ -99,7 +102,21 @@ export default function Calendar() {
     } catch (e) {
       console.error('Failed to load events', e);
     }
+
+    const tutorialDone = localStorage.getItem('tutorial_completed');
+    if (!tutorialDone) {
+      setTimeout(() => setShowOnboarding(true), 1500);
+    }
   }, []);
+
+  const handleTutorialClose = () => {
+    setShowOnboarding(false);
+    localStorage.setItem('tutorial_completed', 'true');
+  };
+
+  const startTutorial = () => {
+    setShowOnboarding(true);
+  };
 
   // Global Reminder Background Checker
   useEffect(() => {
@@ -350,12 +367,13 @@ export default function Calendar() {
                 <div className="grid grid-cols-7 mb-6">
                   {weekDays.map((day) => (
                     <div key={day} className="text-[10px] font-bold uppercase tracking-[0.2em] text-[var(--theme-text-muted)] opacity-60 text-center">
-                      {day}
+                      <span className="hidden sm:inline">{day}</span>
+                      <span className="sm:hidden">{day.charAt(0)}</span>
                     </div>
                   ))}
                 </div>
 
-                <div className="grid grid-cols-7 border-t border-l border-[var(--theme-border)] bg-[var(--theme-card)] transition-all duration-700 rounded-2xl overflow-hidden shadow-inner">
+                <div className="grid grid-cols-7 border-t border-l border-[var(--theme-border)] bg-[var(--theme-card)] transition-all duration-700 rounded-2xl overflow-hidden shadow-inner calendar-grid">
                   {days.map((day) => {
                     const isSelected = selectedDate ? isSameDay(day, selectedDate) : false;
                     const hasNotes = !!filteredEvents[format(day, 'yyyy-MM-dd')]?.length;
@@ -420,8 +438,20 @@ export default function Calendar() {
             {viewMode === 'focus' && (
               <FocusView events={events} />
             )}
+
+            {viewMode === 'extra' && (
+              <ExtraFeatures onStartTutorial={startTutorial} />
+            )}
           </div>
         </div>
+
+        {showOnboarding && (
+          <Onboarding 
+            onClose={handleTutorialClose} 
+            setViewMode={setViewMode}
+            setSelectedDate={setSelectedDate}
+          />
+        )}
 
         <NotesPanel
           date={focusedDate}

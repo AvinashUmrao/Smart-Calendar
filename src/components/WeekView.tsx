@@ -34,7 +34,8 @@ export default function WeekView({
       <div className="grid grid-cols-7 mb-4">
         {weekDays.map((day) => (
           <div key={day} className="text-xs font-semibold uppercase tracking-widest text-stone-400 dark:text-stone-400 text-center">
-            {day}
+            <span className="hidden sm:inline">{day}</span>
+            <span className="sm:hidden">{day.charAt(0)}</span>
           </div>
         ))}
       </div>

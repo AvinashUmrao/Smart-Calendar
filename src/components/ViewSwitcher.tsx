@@ -1,6 +1,6 @@
 import React from 'react';
 
-export type ViewMode = 'day' | 'month' | 'year' | 'week' | 'list' | 'focus';
+export type ViewMode = 'day' | 'month' | 'year' | 'week' | 'list' | 'focus' | 'extra';
 
 interface ViewSwitcherProps {
   viewMode: ViewMode;
@@ -8,10 +8,10 @@ interface ViewSwitcherProps {
 }
 
 export default function ViewSwitcher({ viewMode, setViewMode }: ViewSwitcherProps) {
-  const primaryTabs: ViewMode[] = ['day', 'week', 'month', 'year', 'list', 'focus'];
+  const primaryTabs: ViewMode[] = ['day', 'week', 'month', 'year', 'list', 'focus', 'extra'];
 
   return (
-    <div className="flex flex-wrap items-center gap-4 text-sm font-medium mt-4 lg:mt-0 mb-8 select-none">
+    <div className="flex flex-wrap items-center gap-4 text-sm font-medium mt-4 lg:mt-0 mb-8 select-none view-switcher">
       <div className="flex bg-[var(--theme-accent-muted)] p-1 rounded-2xl border border-[var(--theme-border)] shadow-inner overflow-x-auto no-scrollbar">
         {primaryTabs.map((tab) => {
           const isActive = viewMode === tab;
